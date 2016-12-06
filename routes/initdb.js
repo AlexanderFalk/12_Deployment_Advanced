@@ -8,7 +8,7 @@ var initProducts = require('../config/productsinit.json');
 
 // Authorize users
 app.use(function (req, res, next) {
-    if (req.headers.pass === '1234') {
+    if (req.headers.pass === 'A1234') {
         next();
     }
     else {
