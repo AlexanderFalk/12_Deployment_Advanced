@@ -63,10 +63,15 @@ app.delete('/users/:id', function(req, res) {
 
         var collection = db.collection('users');
 
-        collection.deleteOne(req.params.id, function(err, data) {
-
-            res.send({ 'msg': 'user deleted' });
-            db.close();
+        collection.remove({'_id' : ObjectId(req.params.id)}, function(err, data) {
+            if(err) {
+                res.status(400);
+            }
+            else {
+                res.status(200);
+                res.send({"msg" : "user deleted"});
+                db.close();
+            }
         });
     });
 });
